@@ -1,0 +1,21 @@
+Section A Answers:
+
+1. option B --> SYN command is used to initiate 3 way handshake.
+
+2. option B --> Low latency matters more than guaranteed delivery
+
+3. option D--> Daemon=true flag
+
+4.option C --> QOS 2
+
+5. option a--> cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+
+6. option b--> A unique sequential ID of a message is consumed
+
+7. option c--> top/htop
+
+8. option b--> set the key to automatically expire after 60 seconds
+
+9. option b--> terminate automatically when the main program exits
+
+10.option b-->Enable parallel message consumption with load balancing across partitions

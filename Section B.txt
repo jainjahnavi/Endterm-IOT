@@ -1,0 +1,24 @@
+Section B:
+
+11. (c) A race condition can occur in a server when two clients disconnect at the same time and both threads attempt to update or remove entries from a shared data structure, such as an active client counter. If these operations are not synchronized, one thread may read or modify stale data while the other is performing its update, leading to inconsistent states—for example, the counter being decremented twice or a client record being freed twice. To resolve this, the critical section of code that handles client disconnection should be protected using a threading lock (mutex). By acquiring the lock before modifying shared resources and releasing it afterward, we enforce mutual exclusion, ensuring that only one thread can perform the cleanup at a time. This also vguarantees that shared data remains consistent even under simultaneous disconnects.
+
+12. d) WE will use a Redis Set to store unique device IDs. This is because of the following properties:
+
+1.Uniqueness: A Redis Set automatically prevents duplicates, meaning an ID sent multiple times a day will only be recorded once.
+2.Fast Lookups: Checking if a device ID has already reported data takes \(O(1)\) time complexity.
+3.Tracking by Day: You can name the key with the date (e.g., devices:reported:2026-05-21) and naturally discard the set or let it expire at the end of the day to prepare for the next day's tracking.
+
+
+
+14. d) UDP is preferred over TCP for real time video streaming because:
+
+-> UDP is much faster than TCP and has low latency.
+-> In live video streaming, continuous flow of data packet is necessary, and it does not matter if some data packets gets lost in between as the continuous stream will not notice that.
+
+
+13. d) The auto.offset.reset configuration in a Kafka consumer determines where reading begins when there is no initial committed offset—such as when a new consumer group is created—or when an existing offset is no longer valid.
+The primary difference lies in whether you want to process historical data or only new messages.
+1.earliest: The consumer automatically resets the offset to the oldest available message in the partition. It will read all existing data from the beginning of the topic (subject to your retention policy) before processing new messages. Use cases where data completeness is critical, such as building local state, data recovery, or full historical processing.
+
+latest : The consumer resets the offset to the most recent message at the end of the partition. It ignores all messages currently in the topic and only starts processing messages that arrive after the consumer has joined.Used for Real-time applications where you only care about current data and want to avoid the overhead of processing historical records.
+
